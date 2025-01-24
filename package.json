@@ -1,0 +1,92 @@
+{
+  "name": "mu-tiano-dependency-updater",
+  "displayName": "mu-tiano-dependency-updater",
+  "description": "Notify of new project dependency releases for mu tiano platforms repo",
+  "version": "0.0.1",
+  "private": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kfechter/mu-tiano-dependency-updater"
+  },
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/secureboot_binaries_ext_dep.yaml"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "dependencyUpdates",
+          "name": "Dependency Updates",
+          "icon": "media/dep.svg",
+          "contextualTitle": "Dependency Updates"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "dependencyUpdates.refresh",
+        "title": "Refresh Available Updates"
+      },
+      {
+        "command": "dependencyUpdates.updateDependency",
+        "title": "Update"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "dependencyUpdates.refresh",
+					"when": "view == dependencyUpdates",
+					"group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+					"command": "dependencyUpdates.updateDependency",
+					"when": "view == dependencyUpdates && viewItem == treeitem",
+					"group": "inline"
+				}
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.96.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.16.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "glob": "^11.0.1",
+    "semver": "^7.6.3"
+  }
+}
