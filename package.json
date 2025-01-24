@@ -1,9 +1,10 @@
 {
   "name": "mu-tiano-dependency-updater",
-  "displayName": "mu-tiano-dependency-updater",
-  "description": "Notify of new project dependency releases for mu tiano platforms repo",
+  "displayName": "Mu TianoCore Secureboot Object Dependency Updater",
+  "description": "Notify of new secureboot object dependency releases for mu tiano platforms repo",
   "version": "0.0.1",
   "private": false,
+  "publisher": "thesecondken",
   "license": "MIT",
   "repository": {
     "type": "git",
