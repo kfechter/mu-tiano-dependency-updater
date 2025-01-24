@@ -4,7 +4,7 @@ type: docker
 name: default
 steps:
   - name: publish
-    image: node/lts-alpine
+    image: lts-alpine
     privileged: true
     environment:
       PERSONAL_ACCESS_TOKEN:
