@@ -11,6 +11,7 @@ steps:
        from_secret: PERSONAL_ACCESS_TOKEN
   commands:
   - apk add libsecret
+  - ls
   - npm install -g @vscode/vsce
-  - BUILD HERE
+  - vsce package
   - vsce publish -p $PERSONAL_ACCESS_TOKEN
