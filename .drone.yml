@@ -15,3 +15,6 @@ steps:
   - npm install -g @vscode/vsce
   - vsce package
   - vsce publish -p $PERSONAL_ACCESS_TOKEN
+   when:
+    branch:
+    - main
