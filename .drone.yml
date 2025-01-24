@@ -1,20 +1,20 @@
+---
 kind: pipeline
 type: docker
 name: default
-
 steps:
-- name: publish
-  image: node/22.13.0-alpine
-  privileged: true
-  environment:
-     PERSONAL_ACCESS_TOKEN:
-       from_secret: PERSONAL_ACCESS_TOKEN
-  commands:
-  - apk add libsecret
-  - ls
-  - npm install -g @vscode/vsce
-  - vsce package
-  - vsce publish -p ${PERSONAL_ACCESS_TOKEN}
-   when:
-    branch:
-    - main
+  - name: publish
+    image: node/22.13.0-alpine
+    privileged: true
+    environment:
+      PERSONAL_ACCESS_TOKEN:
+        from_secret: PERSONAL_ACCESS_TOKEN
+    commands:
+      - apk add libsecret
+      - ls
+      - npm install -g @vscode/vsce
+      - vsce package
+      - vsce publish -p ${PERSONAL_ACCESS_TOKEN}
+    when:
+      branch:
+        - main
