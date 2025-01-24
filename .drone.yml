@@ -15,7 +15,7 @@ steps:
       - npm install typescript -g
       - npm install
       - vsce package
-      - vsce publish -p ${PERSONAL_ACCESS_TOKEN}
+      - vsce publish -p $PERSONAL_ACCESS_TOKEN
     when:
       branch:
         - main
